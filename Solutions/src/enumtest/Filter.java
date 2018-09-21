@@ -26,7 +26,7 @@ public class Filter {
 		} 
 		
 		int indexOfNewline = buf.indexOf("\n", index72);
-		if (indexOfNewline != -1) {
+		if (indexOfNewline != -1 && (buf.length() > indexOfNewline+6)) {
 			String subTag = buf.substring(indexOfNewline+4, indexOfNewline+6);
 			for (TagEnum key: tagMap.keySet()) {
 				System.out.println(subTag);
@@ -53,8 +53,13 @@ public class Filter {
 				"/BEN/INVOICE 1234567\n" +
 				"-          \n" +
 				"-}";
-			
-		StringBuffer strbuf = new StringBuffer(testString);
+		
+		String testString2 = "{1:DATTRADEW1NXXXX000000051}{2:o1031623}{4:\n" +
+				":20:1002MEX0002000002	01\n" +
+				":71A:SHA\n" +
+				":72:ZQA9H5360000000000162100000\n"+
+				"}";
+		StringBuffer strbuf = new StringBuffer(testString2);
 		Filter filter = new Filter();
 		filter.filterOne(strbuf);
 		System.out.println("strbuf after -->" + strbuf);
